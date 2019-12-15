@@ -1,86 +1,81 @@
-import React, { Component, Fragment } from "react";
+import React, { Component, Fragment, useState } from "react";
 import axios from "axios";
 import { MDBInput, MDBCol, MDBListGroup, MDBListGroupItem } from "mdbreact";
+import "./SearchBar.css";
+import { connect } from "react-redux";
+import { getCityData } from "../../actions/city";
 
-class SearchBar extends Component {
-  getValueOfSelectOne = value => {
-    console.log(value);
+const SearchBar = ({ getCityData }) => {
+  const [state, setstate] = useState({
+    dataSet: [],
+    searchValue: ""
+  });
+
+  const { dataSet, searchValue } = state;
+
+  const handleSearch = event => {
+    setstate({ ...state, searchValue: event.target.value });
+    console.log(state.searchValue);
+    searchForCity();
   };
 
-  constructor() {
-    super();
-
-    this.state = {
-      dataSet: [],
-      searchValue: ""
-    };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSearc = this.handleSearch.bind(this);
-  }
-
-  handleSearch = event =>
-    this.setState({ searchValue: event.target.value }, () =>
-      this.searchForCity()
-    );
-
-  searchForCity = async () => {
+  const searchForCity = async () => {
     try {
       const res = await axios.get(
-        `locations/v1/cities/autocomplete?apikey=${process.env.REACT_APP_API_KEY}&q=${this.state.searchValue}`
+        `locations/v1/cities/autocomplete?apikey=${process.env.REACT_APP_API_KEY}&q=${state.searchValue}`
       );
       let cities = [];
       res.data.map(city =>
-        cities.push({ name: city.LocalizedName, key: city.Key })
+        cities.push({
+          name: city.LocalizedName,
+          key: city.Key,
+          country: city.Country.LocalizedName
+        })
       );
-      this.setState({
+      setstate({
         dataSet: cities
       });
-      console.log(this.state.dataSet);
+      console.log(dataSet);
     } catch (err) {
       console.error(err);
     }
   };
 
-  handleChange = async value => {
+  const handleChange = async value => {
     console.log(value);
-    this.setState({
+    setstate({
       dataSet: [],
       searchValue: value.name
     });
-    try {
-      const res = await axios.get(
-        `/currentconditions/v1/${value.key}?apikey=${process.env.REACT_APP_API_KEY}`
-      );
-      console.log(res.data);
-    } catch (err) {
-      console.error(err);
-    }
+    getCityData(value);
+    // try {
+    //   const res = await axios.get(
+    //     `/currentconditions/v1/${value.key}?apikey=${process.env.REACT_APP_API_KEY}`
+    //   );
+    //   console.log(res.data);
+    // } catch (err) {
+    //   console.error(err);
+    // }
   };
 
-  render() {
-    return (
-      <MDBCol>
-        <MDBInput
-          value={this.state.searchValue}
-          onChange={this.handleSearch}
-          hint="Enter city name"
-          type="text"
-          containerClass="mt-0"
-        />
-        <MDBListGroup>
-          {this.state.dataSet.map(item => (
-            <MDBListGroupItem
-              onClick={() => this.handleChange(item)}
-              key={item.key}
-            >
-              {item.name}
-            </MDBListGroupItem>
-          ))}
-        </MDBListGroup>
-      </MDBCol>
-    );
-  }
-}
+  return (
+    <MDBCol>
+      <MDBInput
+        value={searchValue}
+        onChange={handleSearch}
+        hint="Enter city name"
+        type="text"
+        containerClass="mt-0"
+      />
+      <MDBListGroup>
+        {dataSet.map(item => (
+          <MDBListGroupItem onClick={() => handleChange(item)} key={item.key}>
+            {item.name}
+          </MDBListGroupItem>
+        ))}
+      </MDBListGroup>
+    </MDBCol>
+  );
+};
 
-export default SearchBar;
+export default connect(null, { getCityData })(SearchBar);

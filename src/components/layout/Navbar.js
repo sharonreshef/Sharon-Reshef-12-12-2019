@@ -33,7 +33,7 @@ const Navbar = () => {
       <MDBCollapse isOpen={collapse} navbar>
         <MDBNavbarNav right>
           <MDBNavItem>
-            <MDBNavLink to="/">Weather</MDBNavLink>
+            <MDBNavLink to="/">Home</MDBNavLink>
           </MDBNavItem>
           <MDBNavItem>
             <MDBNavLink to="/favorites">Favorites</MDBNavLink>

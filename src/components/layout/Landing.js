@@ -2,6 +2,7 @@ import React, { Fragment, useState } from "react";
 import { MDBRow, MDBInput, MDBCol, MDBAutocomplete } from "mdbreact";
 import axios from "axios";
 import SearchBar from "./SearchBar";
+import MainWeather from "./MainWeather";
 
 const states = [
   "Alabama",
@@ -72,6 +73,7 @@ const Landing = () => {
         </MDBRow>
         <MDBCol md="6" className="text-center">
           <SearchBar />
+          <MainWeather />
         </MDBCol>
       </Fragment>
     );
