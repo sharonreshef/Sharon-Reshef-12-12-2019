@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import { getCityData } from "../../actions/city";
 
 const SearchBar = ({ getCityData }) => {
+  //from API
   const [state, setstate] = useState({
     dataSet: [],
     searchValue: ""
@@ -16,22 +17,35 @@ const SearchBar = ({ getCityData }) => {
   const handleSearch = event => {
     setstate({ ...state, searchValue: event.target.value });
     console.log(state.searchValue);
-    searchForCity();
+    searchForCity(event.target.value);
   };
 
-  const searchForCity = async () => {
+  const searchForCity = async value => {
     try {
-      const res = await axios.get(
-        `locations/v1/cities/autocomplete?apikey=${process.env.REACT_APP_API_KEY}&q=${state.searchValue}`
-      );
-      let cities = [];
-      res.data.map(city =>
-        cities.push({
-          name: city.LocalizedName,
-          key: city.Key,
-          country: city.Country.LocalizedName
-        })
-      );
+      // const res = await axios.get(
+      //   `locations/v1/cities/autocomplete?apikey=${process.env.REACT_APP_API_KEY}&q=${value}`
+      // );
+      // let cities = [];
+      // res.data.map(city =>
+      //   cities.push({
+      //     name: city.LocalizedName,
+      //     key: city.Key,
+      //     country: city.Country.LocalizedName
+      //   })
+      // );
+
+      const cities = [
+        {
+          name: "tel Aviv",
+          country: "Israel",
+          key: "12345"
+        },
+        {
+          name: "Teliasi",
+          country: "Lithunia",
+          key: "6789"
+        }
+      ];
       setstate({
         dataSet: cities
       });
@@ -41,21 +55,13 @@ const SearchBar = ({ getCityData }) => {
     }
   };
 
-  const handleChange = async value => {
+  const onChooseCity = async value => {
     console.log(value);
     setstate({
       dataSet: [],
       searchValue: value.name
     });
     getCityData(value);
-    // try {
-    //   const res = await axios.get(
-    //     `/currentconditions/v1/${value.key}?apikey=${process.env.REACT_APP_API_KEY}`
-    //   );
-    //   console.log(res.data);
-    // } catch (err) {
-    //   console.error(err);
-    // }
   };
 
   return (
@@ -68,9 +74,9 @@ const SearchBar = ({ getCityData }) => {
         containerClass="mt-0"
       />
       <MDBListGroup>
-        {dataSet.map(item => (
-          <MDBListGroupItem onClick={() => handleChange(item)} key={item.key}>
-            {item.name}
+        {dataSet.map(city => (
+          <MDBListGroupItem onClick={() => onChooseCity(city)} key={city.key}>
+            {city.name}
           </MDBListGroupItem>
         ))}
       </MDBListGroup>

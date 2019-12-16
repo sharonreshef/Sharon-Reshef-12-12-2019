@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import Navbar from "./components/layout/Navbar";
 import Landing from "./components/layout/Landing";
-import Favorites from "./components/layout/Favoriets";
+import Favorites from "./components/layout/Favorites";
 import "./App.css";
 
 import { Provider } from "react-redux";

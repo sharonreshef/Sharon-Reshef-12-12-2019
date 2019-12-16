@@ -33,9 +33,12 @@ export const getCityData = value => async dispatch => {
         "http://www.accuweather.com/en/il/tel-aviv/215854/current-weather/215854?lang=en-us"
     };
     const city = {
-      weatherData: res,
-      cityName: value.name,
-      cityKey: value.key,
+      //from API
+      // weatherData: res.data[0],
+      //from local
+      currentWeatherData: res,
+      name: value.name,
+      key: value.key,
       country: value.country
     };
     dispatch({
@@ -44,9 +47,5 @@ export const getCityData = value => async dispatch => {
     });
   } catch (err) {
     console.error(err);
-    // dispatch({
-    //   type: VACATION_ERROR,
-    //   payload: { msg: err.response.statusText, status: err.response.status }
-    // });
   }
 };

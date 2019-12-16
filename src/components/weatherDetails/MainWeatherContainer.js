@@ -13,24 +13,21 @@ import {
   MDBCol,
   MDBRow
 } from "mdbreact";
+import CurrentWeatherDetails from "./CurrentWeatherDetails";
 
-const MainWeather = ({ city }) => {
-  return !city.cityName ? (
+const MainWeatherContainer = ({ city }) => {
+  return !city.name ? (
     <Fragment></Fragment>
   ) : (
     <MDBCol>
-      <MDBCard style={{ width: "20rem" }} className="z-depth-1 mb-4 ">
-        <MDBCardImage className="img-fluid" src="" />
-        <MDBCardBody>
-          <MDBCardTitle className="h5">title</MDBCardTitle>
-          <MDBCardText>{city.WeatherIcon}</MDBCardText>
-        </MDBCardBody>
+      <MDBCard style={{ width: "50rem" }} className="z-depth-1 mb-4 ">
+        <CurrentWeatherDetails />
       </MDBCard>
     </MDBCol>
   );
 };
 
-MainWeather.propTypes = {
+MainWeatherContainer.propTypes = {
   city: PropTypes.object.isRequired
 };
 
@@ -38,4 +35,4 @@ const mapStateToProps = state => ({
   city: state.city
 });
 
-export default connect(mapStateToProps, {})(MainWeather);
+export default connect(mapStateToProps, {})(MainWeatherContainer);
