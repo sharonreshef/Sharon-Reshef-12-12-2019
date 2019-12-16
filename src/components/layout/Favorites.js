@@ -3,19 +3,22 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 import FavoriteCard from "../favoritesDetails/FavoriteCard";
+import CurrentWeatherDetails from "../weatherDetails/CurrentWeatherDetails";
 
 const Favorites = ({ favorites }) => {
+  console.log("city", favorites);
+
   return (
     <Fragment>
       {favorites.map(city => (
-        <FavoriteCard key={city.key} city={city} />
+        <CurrentWeatherDetails key={city.key} city={city} />
       ))}
     </Fragment>
   );
 };
 
 Favorites.propTypes = {
-  favorites: PropTypes.object.isRequired
+  favorites: PropTypes.array.isRequired
 };
 
 const mapStateToProps = state => ({

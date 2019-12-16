@@ -1,0 +1,122 @@
+// .five-weather-card-container {
+//   // margin: 0 auto;
+//   display: block;
+//   width: 320px;
+//   height: 300px;
+//   border-radius: 2px;
+//   box-shadow: 2px 2px 10px #666;
+//   margin-top: 10px;
+// }
+
+// .favorite {
+//   color: palevioletred;
+// }
+
+// .weather-elements {
+//   display: flex;
+//   justify-content: space-between;
+// }
+
+// .today-icon {
+//   width: 55%;
+// }
+
+// i {
+//   cursor: pointer;
+// }
+
+// .five-days-cards {
+//   margin: 0 auto;
+//   margin-top: 10px;
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: space-evenly;
+// }
+
+// .day-name {
+//   position: relative;
+//   color: #343434;
+//   font-family: roboto;
+//   font-size: 1em;
+//   width: 100%;
+//   padding: 4%;
+//   display: flex;
+//   flex-direction: column;
+//   float: left;
+//   background: #fefefe;
+// }
+
+.degrees {
+  font-family: roboto;
+  font-size: 20px;
+  bottom: 0px;
+  left: 10px;
+  z-index: 3;
+}
+.icon-phrase {
+  font-family: roboto;
+}
+
+.days-container {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  flex-flow: row;
+}
+
+.push {
+  margin-top: auto;
+}
+.temp {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.day-card {
+  //   margin: 0 auto;
+  border-radius: 2px;
+  box-shadow: 2px 2px 10px #666;
+  width: 210px;
+  display: flex;
+  height: 250px;
+  z-index: 0;
+  margin-right: 15px;
+  flex-flow: column;
+  align-items: center;
+}
+
+.day-name {
+  position: relative;
+  color: #343434;
+  font-family: roboto;
+  font-size: 2em;
+  width: 100%;
+  align-items: center;
+  padding: 4%;
+  display: flex;
+  flex-direction: column;
+  float: left;
+  background: #fefefe;
+}
+
+// .weather-card {
+//   margin: 0 auto;
+//   border-radius: 2px;
+//   box-shadow: 2px 2px 10px #666;
+//   padding: 10%;
+//   width: 180px;
+//   display: flex;
+//   height: 210px;
+//   z-index: 0;
+//   margin-right: 10px;
+// }
+
+// .img-fluid {
+//   width: 45%;
+// }
+// .day {
+//   background: #bbdefb;
+//   color: #343434;
+// }

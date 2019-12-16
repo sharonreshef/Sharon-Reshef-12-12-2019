@@ -2,7 +2,6 @@ import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { addToFavorites, removeFromFavorites } from "../../actions/favorites";
-
 import {
   MDBBtn,
   MDBCard,
@@ -27,68 +26,35 @@ const CurrentWeatherDetails = ({
     <Fragment>
       <div className="weather-card-container">
         <div id="card" className="weather-card day">
-          <img
-            key={key}
-            className="img-fluid"
-            src={
-              currentWeatherData.WeatherIcon < 10
-                ? `https://developer.accuweather.com/sites/default/files/0${currentWeatherData.WeatherIcon}-s.png`
-                : `https://developer.accuweather.com/sites/default/files/${currentWeatherData.WeatherIcon}-s.png`
-            }
-          />
+          <div className="weather-elements">
+            <img
+              key={key}
+              className="today-icon"
+              src={
+                currentWeatherData.WeatherIcon < 10
+                  ? `https://developer.accuweather.com/sites/default/files/0${currentWeatherData.WeatherIcon}-s.png`
+                  : `https://developer.accuweather.com/sites/default/files/${currentWeatherData.WeatherIcon}-s.png`
+              }
+            />
+            <i
+              onClick={e => {
+                isFavorite ? removeFromFavorites(city) : addToFavorites(city);
+                console.log("click");
+              }}
+              className={
+                isFavorite ? "fas fa-star favorite fa-2x" : "far fa-star fa-2x"
+              }
+            />
+          </div>
           <div id="temp" className={isCelcius ? "text-c" : "text-f"}>
             {currentWeatherData.Temperature.Metric.Value}
           </div>
+          <div className="text">{currentWeatherData.WeatherText}</div>
         </div>
         <div id="city" className="city">
           {name}, {country}
-          <MDBBtn
-            color={isFavorite ? "pink" : "elegant"}
-            onClick={e => {
-              isFavorite ? removeFromFavorites(city) : addToFavorites(city);
-              console.log("click");
-            }}
-          >
-            <i
-              className={
-                isFavorite ? "fas fa-heart fa-2x" : "far fa-heart fa-2x"
-              }
-            />{" "}
-            {isFavorite ? "Remove" : "Add"}
-          </MDBBtn>
         </div>
       </div>
-      {/* <MDBCardImage
-        key={key}
-        className="img-fluid"
-        src={
-          currentWeatherData.WeatherIcon < 10
-            ? `https://developer.accuweather.com/sites/default/files/0${currentWeatherData.WeatherIcon}-s.png`
-            : `https://developer.accuweather.com/sites/default/files/${currentWeatherData.WeatherIcon}-s.png`
-        }
-      />
-      <MDBBtn
-        color={isFavorite ? "pink" : "elegant"}
-        onClick={e => {
-          isFavorite ? removeFromFavorites(city) : addToFavorites(city);
-          console.log("click");
-        }}
-      >
-        <i
-          className={isFavorite ? "fas fa-heart fa-2x" : "far fa-heart fa-2x"}
-        />{" "}
-        {isFavorite ? "Remove" : "Add"}
-      </MDBBtn>
-      <MDBCardBody>
-        <MDBCardTitle className="h5">
-          {name}, {country}
-        </MDBCardTitle>
-        <MDBCardText>
-          temp: {currentWeatherData.Temperature.Metric.Value},{" "}
-          {currentWeatherData.Temperature.Metric.Unit}
-          {"\u00b0"}
-        </MDBCardText>
-      </MDBCardBody> */}
     </Fragment>
   );
 };

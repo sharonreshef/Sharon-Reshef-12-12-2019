@@ -1,8 +1,6 @@
 import { ADD_TO_FAVORITES, REMOVE_FROM_FAVORITES } from "../actions/types";
 
-const initialState = [
-  { name: "tel Aviv", key: "123785", country: "Israel", isFavorite: false }
-];
+const initialState = [];
 
 export default function(state = initialState, action) {
   const { type, payload } = action;

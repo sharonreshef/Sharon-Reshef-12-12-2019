@@ -9,16 +9,18 @@ import { getCityData } from "../../actions/city";
 
 const SearchBar = ({ getCityData, showHeader }) => {
   //from API
-  const [state, setstate] = useState({
+  const [formData, setFormData] = useState({
     dataSet: [],
     searchValue: ""
   });
 
-  const { dataSet, searchValue } = state;
+  const { dataSet, searchValue } = formData;
 
   const handleSearch = event => {
-    setstate({ ...state, searchValue: event.target.value });
-    console.log(state.searchValue);
+    setFormData({ ...formData, searchValue: event.target.value });
+    console.log(formData);
+    console.log(event.target.value);
+    console.log(searchValue);
     searchForCity(event.target.value);
   };
 
@@ -48,7 +50,7 @@ const SearchBar = ({ getCityData, showHeader }) => {
           key: "6789"
         }
       ];
-      setstate({
+      setFormData({
         dataSet: cities
       });
       console.log(dataSet);
@@ -59,7 +61,7 @@ const SearchBar = ({ getCityData, showHeader }) => {
 
   const onChooseCity = async value => {
     console.log(value);
-    setstate({
+    setFormData({
       dataSet: [],
       searchValue: value.name
     });
@@ -88,7 +90,6 @@ const SearchBar = ({ getCityData, showHeader }) => {
 };
 
 SearchBar.propTypes = {
-  showHeader: PropTypes.bool.isRequired,
   getCityData: PropTypes.func.isRequired
 };
 

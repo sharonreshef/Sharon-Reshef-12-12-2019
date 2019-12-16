@@ -2,9 +2,26 @@
   // margin: 0 auto;
   display: block;
   width: 320px;
-  height: 380px;
+  height: 300px;
   border-radius: 2px;
   box-shadow: 2px 2px 10px #666;
+}
+
+.favorite {
+  color: palevioletred;
+}
+
+.weather-elements {
+  display: flex;
+  justify-content: space-between;
+}
+
+.today-icon {
+  width: 55%;
+}
+
+i {
+  cursor: pointer;
 }
 
 .city {
@@ -20,6 +37,14 @@
   background: #fefefe;
 }
 
+.text {
+  position: absolute;
+  font-family: roboto;
+  font-size: 1em;
+  bottom: 0px;
+  left: 10px;
+  z-index: 3;
+}
 .text-c {
   position: absolute;
   font-family: roboto;

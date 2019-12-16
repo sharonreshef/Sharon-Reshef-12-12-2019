@@ -1,7 +1,8 @@
 import {
   GET_CITY_DATA,
   ADD_TO_FAVORITES,
-  REMOVE_FROM_FAVORITES
+  REMOVE_FROM_FAVORITES,
+  GET_FIVE_DAYS_WEATHER
 } from "../actions/types";
 
 const initialState = {
@@ -9,6 +10,7 @@ const initialState = {
   key: null,
   country: null,
   currentWeatherData: null,
+  fiveDaysWeather: null,
   isFavorite: false
 };
 
@@ -37,6 +39,11 @@ export default function(state = initialState, action) {
       } else {
         return state;
       }
+    case GET_FIVE_DAYS_WEATHER:
+      return {
+        ...state,
+        fiveDaysWeather: payload
+      };
     default:
       return state;
   }

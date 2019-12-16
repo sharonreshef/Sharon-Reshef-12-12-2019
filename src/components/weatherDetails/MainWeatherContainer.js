@@ -15,14 +15,20 @@ import {
   MDBBox
 } from "mdbreact";
 import CurrentWeatherDetails from "./CurrentWeatherDetails";
+import FiveDaysWeather from "./FiveDaysWeather";
 
 const MainWeatherContainer = ({ city }) => {
   return !city.name ? (
     <Fragment></Fragment>
   ) : (
-    <MDBBox display="flex" flex="row" alignItems="start">
+    <MDBBox
+      display="flex"
+      flex="column"
+      alignItems="center"
+      justifyContent="around"
+    >
       <CurrentWeatherDetails key={city.key} city={city} />
-      {/* <FiveDaysWeather /> */}
+      <FiveDaysWeather />
     </MDBBox>
   );
 };
