@@ -30,10 +30,6 @@ ul {
   list-style: none;
 }
 
-img {
-  width: 100%;
-}
-
 /* Utilities */
 .container {
   max-width: 1100px;
@@ -164,10 +160,6 @@ img {
 
 .card-deck .card {
   margin-bottom: 25px;
-}
-
-.img-fluid {
-  width: 100% \9;
 }
 
 /* Overlay */

@@ -11,7 +11,8 @@ import {
   MDBCardTitle,
   MDBCardText,
   MDBCol,
-  MDBRow
+  MDBRow,
+  MDBBox
 } from "mdbreact";
 import CurrentWeatherDetails from "./CurrentWeatherDetails";
 
@@ -19,11 +20,10 @@ const MainWeatherContainer = ({ city }) => {
   return !city.name ? (
     <Fragment></Fragment>
   ) : (
-    <MDBCol>
-      <MDBCard style={{ width: "50rem" }} className="z-depth-1 mb-4 ">
-        <CurrentWeatherDetails />
-      </MDBCard>
-    </MDBCol>
+    <MDBBox display="flex" flex="row" alignItems="start">
+      <CurrentWeatherDetails key={city.key} city={city} />
+      {/* <FiveDaysWeather /> */}
+    </MDBBox>
   );
 };
 

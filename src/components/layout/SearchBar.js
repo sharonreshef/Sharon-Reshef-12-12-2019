@@ -1,11 +1,13 @@
 import React, { Component, Fragment, useState } from "react";
 import axios from "axios";
+import PropTypes from "prop-types";
+
 import { MDBInput, MDBCol, MDBListGroup, MDBListGroupItem } from "mdbreact";
 import "./SearchBar.css";
 import { connect } from "react-redux";
 import { getCityData } from "../../actions/city";
 
-const SearchBar = ({ getCityData }) => {
+const SearchBar = ({ getCityData, showHeader }) => {
   //from API
   const [state, setstate] = useState({
     dataSet: [],
@@ -36,7 +38,7 @@ const SearchBar = ({ getCityData }) => {
 
       const cities = [
         {
-          name: "tel Aviv",
+          name: "Tel Aviv",
           country: "Israel",
           key: "12345"
         },
@@ -65,13 +67,14 @@ const SearchBar = ({ getCityData }) => {
   };
 
   return (
-    <MDBCol>
+    <Fragment>
       <MDBInput
         value={searchValue}
         onChange={handleSearch}
         hint="Enter city name"
         type="text"
-        containerClass="mt-0"
+        containerClass="mt-0 mb-0"
+        icon="search"
       />
       <MDBListGroup>
         {dataSet.map(city => (
@@ -80,8 +83,13 @@ const SearchBar = ({ getCityData }) => {
           </MDBListGroupItem>
         ))}
       </MDBListGroup>
-    </MDBCol>
+    </Fragment>
   );
+};
+
+SearchBar.propTypes = {
+  showHeader: PropTypes.bool.isRequired,
+  getCityData: PropTypes.func.isRequired
 };
 
 export default connect(null, { getCityData })(SearchBar);
