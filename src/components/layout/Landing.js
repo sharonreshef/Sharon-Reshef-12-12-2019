@@ -12,7 +12,7 @@ const Landing = ({ city, alert }) => {
         display="flex"
         flex="column"
         alignItems="center"
-        className="container"
+        className="container mb-0"
       >
         <Fragment>
           <div className="text-center hide-sm">
