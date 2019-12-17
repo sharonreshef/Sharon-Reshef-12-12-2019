@@ -7,7 +7,7 @@ const apiKey = "Tkahw7D9GyntmjA2CKfI14zzUsTeVIbk";
 export const getCityData = (name, key, country) => async dispatch => {
   try {
     const res = await axios.get(
-      `http://dataservice.accuweather.com/currentconditions/v1/${key}?apikey=${apiKey}`
+      `//dataservice.accuweather.com/currentconditions/v1/${key}?apikey=${apiKey}`
     );
     console.log("res", res);
 
@@ -31,7 +31,7 @@ export const getCityData = (name, key, country) => async dispatch => {
 export const getFiveDaysWeather = key => async dispatch => {
   try {
     const res = await axios.get(
-      `http://dataservice.accuweather.com/forecasts/v1/daily/5day/${key}?apikey=${apiKey}&metric=true`
+      `//dataservice.accuweather.com/forecasts/v1/daily/5day/${key}?apikey=${apiKey}&metric=true`
     );
 
     dispatch({
