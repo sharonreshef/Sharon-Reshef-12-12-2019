@@ -1,0 +1,17 @@
+.header {
+  font-family: roboto;
+}
+
+.favorites-container {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.favorites-cards-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: space-between;
+}

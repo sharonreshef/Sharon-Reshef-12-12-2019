@@ -11,7 +11,8 @@ const initialState = {
   country: null,
   currentWeatherData: null,
   fiveDaysWeather: null,
-  isFavorite: false
+  isFavorite: false,
+  isCelsius: false
 };
 
 export default function(state = initialState, action) {

@@ -13,15 +13,17 @@ import {
   MDBCol,
   MDBRow
 } from "mdbreact";
-import "./CurrentWeatherDetails.scss";
+import "./FavoriteCard.scss";
 
-const CurrentWeatherDetails = ({
+const FavoriteCard = ({
   favorites,
+  fixedInfo,
   city,
   addToFavorites,
   removeFromFavorites
 }) => {
-  const { name, key, country, currentWeatherData, isCelsius } = city;
+  const { isCelsius } = city;
+  const { name, key, country, currentWeatherData } = fixedInfo;
 
   let isFavorite;
   if (favorites.find(city => city.key === key)) {
@@ -70,7 +72,7 @@ const CurrentWeatherDetails = ({
   );
 };
 
-CurrentWeatherDetails.propTypes = {
+FavoriteCard.propTypes = {
   city: PropTypes.object.isRequired,
   addToFavorites: PropTypes.func.isRequired,
   removeFromFavorites: PropTypes.func.isRequired,
@@ -86,4 +88,4 @@ export default connect(mapStateToProps, {
   addToFavorites,
   removeFromFavorites,
   getCityData
-})(CurrentWeatherDetails);
+})(FavoriteCard);

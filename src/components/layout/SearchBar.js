@@ -26,30 +26,33 @@ const SearchBar = ({ getCityData, showHeader }) => {
 
   const searchForCity = async value => {
     try {
-      // const res = await axios.get(
-      //   `locations/v1/cities/autocomplete?apikey=${process.env.REACT_APP_API_KEY}&q=${value}`
-      // );
-      // let cities = [];
-      // res.data.map(city =>
-      //   cities.push({
-      //     name: city.LocalizedName,
-      //     key: city.Key,
-      //     country: city.Country.LocalizedName
-      //   })
-      // );
+      const res = await axios.get(
+        `locations/v1/cities/autocomplete?apikey=${process.env.REACT_APP_API_KEY}&q=${value}`
+      );
+      setFormData({
+        dataSet: []
+      });
+      let cities = [];
+      res.data.map(city =>
+        cities.push({
+          name: city.LocalizedName,
+          key: city.Key,
+          country: city.Country.LocalizedName
+        })
+      );
 
-      const cities = [
-        {
-          name: "Tel Aviv",
-          country: "Israel",
-          key: "12345"
-        },
-        {
-          name: "Teliasi",
-          country: "Lithunia",
-          key: "6789"
-        }
-      ];
+      // const cities = [
+      //   {
+      //     name: "Tel Aviv",
+      //     country: "Israel",
+      //     key: "12345"
+      //   },
+      //   {
+      //     name: "Teliasi",
+      //     country: "Lithunia",
+      //     key: "6789"
+      //   }
+      // ];
       setFormData({
         dataSet: cities
       });
@@ -65,7 +68,7 @@ const SearchBar = ({ getCityData, showHeader }) => {
       dataSet: [],
       searchValue: value.name
     });
-    getCityData(value);
+    getCityData(value.name, value.key, value.country);
   };
 
   return (

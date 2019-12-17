@@ -11,7 +11,11 @@ const FiveDaysWeather = ({ city }) => {
     return date;
   };
 
-  return (
+  const convertToFahrenheit = celsius => {
+    return (celsius * 1.8 + 32).toFixed(1);
+  };
+
+  return city.fiveDaysWeather ? (
     <div className="days-container">
       {city.fiveDaysWeather.map(day => (
         <div id="card" className="day-card day">
@@ -29,11 +33,21 @@ const FiveDaysWeather = ({ city }) => {
           <div className="icon-phrase">{day.Day.IconPhrase}</div>
           <div className="push">
             <div className="temp">
-              <div id="temp" className="degrees">
-                {day.Temperature.Maximum.Value}
+              <div className="degrees">
+                {city.isCelsius
+                  ? Math.floor(day.Temperature.Maximum.Value)
+                  : convertToFahrenheit(
+                      Math.floor(day.Temperature.Maximum.Value)
+                    )}
+                °
               </div>
-              <div id="temp" className="degrees">
-                {day.Temperature.Minimum.Value}
+              <div className="degrees">
+                {city.isCelsius
+                  ? Math.floor(day.Temperature.Minimum.Value)
+                  : convertToFahrenheit(
+                      Math.floor(day.Temperature.Minimum.Value)
+                    )}
+                °
               </div>
             </div>
             <div className="temp">
@@ -43,6 +57,8 @@ const FiveDaysWeather = ({ city }) => {
         </div>
       ))}
     </div>
+  ) : (
+    <Fragment></Fragment>
   );
 };
 
