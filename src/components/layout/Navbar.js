@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 
-// Style
 import "./Navbar.css";
 import {
   MDBNavbar,
@@ -22,9 +21,9 @@ const Navbar = () => {
   return (
     <MDBNavbar color="default-color" expand="md" scrolling className="navbar">
       <MDBNavbarBrand>
-        <MDBNavLink to="/">
+        <MDBNavLink to="/" onClick={onClick}>
           {" "}
-          <i className="fas fa-cloud-sun" />
+          <img alt="icon" className="icon" src={"./weather_icon.png"} />
           {"  "}
           <strong className="white-text h3">Herolo Weather App</strong>
         </MDBNavLink>
@@ -33,10 +32,14 @@ const Navbar = () => {
       <MDBCollapse isOpen={collapse} navbar>
         <MDBNavbarNav right>
           <MDBNavItem>
-            <MDBNavLink to="/">Home</MDBNavLink>
+            <MDBNavLink to="/" onClick={onClick}>
+              Home
+            </MDBNavLink>
           </MDBNavItem>
           <MDBNavItem>
-            <MDBNavLink to="/favorites">Favorites</MDBNavLink>
+            <MDBNavLink to="/favorites" onClick={onClick}>
+              Favorites
+            </MDBNavLink>
           </MDBNavItem>
         </MDBNavbarNav>
       </MDBCollapse>

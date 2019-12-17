@@ -1,15 +1,27 @@
 import axios from "axios";
-
 import {
   ADD_TO_FAVORITES,
   REMOVE_FROM_FAVORITES,
   FETCH_FAVORITES_DATA
 } from "./types";
-import favorites from "../reducers/favorites";
-import { getCityData, getFiveDaysWeather } from "./city";
+import { setAlert } from "./alert";
 
 export const addToFavorites = city => dispatch => {
   try {
+    // // if (localStorage.getItem("favorites") === null) {
+    // //   localStorage.setItem("favorites", city.key);
+    // // }
+    // if (localStorage.getItem("favorites") === null) {
+    //   var favorites = [city.key];
+    //   // favorites.push(JSON.parse(localStorage.getItem("favorites")));
+    //   localStorage.setItem("favorites", JSON.stringify(favorites));
+    // } else {
+    //   let favorites = JSON.parse(localStorage.getItem("favorites"));
+    //   console.log(favorites);
+    //   favorites.push(parseInt(city.key));
+    //   console.log(favorites);
+    //   localStorage.setItem("favorites", JSON.stringify(favorites));
+    // }
     dispatch({
       type: ADD_TO_FAVORITES,
       payload: city
@@ -21,12 +33,18 @@ export const addToFavorites = city => dispatch => {
 
 export const removeFromFavorites = city => dispatch => {
   try {
+    // let favorites = JSON.parse(localStorage.getItem("favorites"));
+    // console.log(favorites);
+    // let newfavorites = favorites.filter(key => key !== city.key);
+    // console.log(newfavorites);
+    // localStorage.setItem("favorites", JSON.stringify(newfavorites));
     dispatch({
       type: REMOVE_FROM_FAVORITES,
       payload: city
     });
   } catch (err) {
-    console.error(err);
+    const error = err.response.data.Message;
+    dispatch(setAlert(error, "danger"));
   }
 };
 
@@ -35,35 +53,8 @@ export const fetchFavoritesData = (name, key, country) => async dispatch => {
     const res = await axios.get(
       `currentconditions/v1/${key}?apikey=${process.env.REACT_APP_API_KEY}`
     );
-    // const res = {
-    //   LocalObservationDateTime: "2019-12-15T12:16:00+02:00",
-    //   EpochTime: 1576404960,
-    //   WeatherText: "Mostly cloudy",
-    //   WeatherIcon: 6,
-    //   HasPrecipitation: false,
-    //   PrecipitationType: null,
-    //   IsDayTime: true,
-    //   Temperature: {
-    //     Metric: {
-    //       Value: 19.8,
-    //       Unit: "C",
-    //       UnitType: 17
-    //     },
-    //     Imperial: {
-    //       Value: 68,
-    //       Unit: "F",
-    //       UnitType: 18
-    //     }
-    //   },
-    //   MobileLink:
-    //     "http://m.accuweather.com/en/il/tel-aviv/215854/current-weather/215854?lang=en-us",
-    //   Link:
-    //     "http://www.accuweather.com/en/il/tel-aviv/215854/current-weather/215854?lang=en-us"
-    // };
+
     const city = {
-      //from API
-      // weatherData: res.data[0],
-      //from local
       currentWeatherData: res.data[0],
       name,
       key,
@@ -75,6 +66,7 @@ export const fetchFavoritesData = (name, key, country) => async dispatch => {
     });
     dispatch(addToFavorites(city));
   } catch (err) {
-    console.error(err);
+    const error = err.response.data.Message;
+    dispatch(setAlert(error, "danger"));
   }
 };

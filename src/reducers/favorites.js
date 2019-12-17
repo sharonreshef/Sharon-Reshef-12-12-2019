@@ -8,7 +8,6 @@ const initialState = [];
 
 export default function(state = initialState, action) {
   const { type, payload } = action;
-  console.log(payload);
 
   switch (type) {
     case FETCH_FAVORITES_DATA:

@@ -5,16 +5,6 @@ import { addToFavorites, removeFromFavorites } from "../../actions/favorites";
 import { getCityData } from "../../actions/city";
 import Moment from "react-moment";
 
-import {
-  MDBBtn,
-  MDBCard,
-  MDBCardBody,
-  MDBCardImage,
-  MDBCardTitle,
-  MDBCardText,
-  MDBCol,
-  MDBRow
-} from "mdbreact";
 import "./CurrentWeatherDetails.scss";
 
 const CurrentWeatherDetails = ({
@@ -31,17 +21,15 @@ const CurrentWeatherDetails = ({
       getCityData(city.name, city.key, city.country);
     }, 1800000);
     return () => clearInterval(interval);
-  }, []);
+  }, [city.country, city.name, city.key, getCityData]);
 
   let isFavorite;
   if (favorites.find(city => city.key === key)) {
     isFavorite = true;
   }
 
-  var timestamp = Date.now(), // returns milliseconds since epoch time
+  var timestamp = Date.now(),
     normalisedTime = new Date(timestamp);
-
-  console.log(normalisedTime);
 
   return (
     <Fragment>
@@ -49,6 +37,7 @@ const CurrentWeatherDetails = ({
         <div id="card" className="weather-card day">
           <div className="weather-elements">
             <img
+              alt="weather icon"
               key={key}
               className="today-icon"
               src={
@@ -60,7 +49,6 @@ const CurrentWeatherDetails = ({
             <i
               onClick={e => {
                 isFavorite ? removeFromFavorites(city) : addToFavorites(city);
-                console.log("click");
               }}
               className={
                 isFavorite

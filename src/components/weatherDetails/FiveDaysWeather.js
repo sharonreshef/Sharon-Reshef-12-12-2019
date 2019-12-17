@@ -1,11 +1,12 @@
 import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import "./FiveDaysWeather.scss";
+
 import { MDBRow } from "mdbreact";
-import ScrollButton from "../layout/ScrollButton";
+import "./FiveDaysWeather.scss";
 
 const FiveDaysWeather = ({ city }) => {
+  const { fiveDaysWeather } = city;
   const getDayFromEpochDate = epochDate => {
     var date = new Date(epochDate * 1000).toLocaleDateString("en-us", {
       weekday: "long"
@@ -17,15 +18,16 @@ const FiveDaysWeather = ({ city }) => {
     return (celsius * 1.8 + 32).toFixed(1);
   };
 
-  return city.fiveDaysWeather ? (
+  return fiveDaysWeather ? (
     <div className="days-container">
       <MDBRow className="five-days-cards">
-        {city.fiveDaysWeather.map(day => (
+        {fiveDaysWeather.map(day => (
           <div key={day.Date} className="day-card day">
             <div id="city" className="day-name">
               {getDayFromEpochDate(day.EpochDate)}
             </div>
             <img
+              alt="weather icon"
               className="today-icon"
               src={
                 day.Day.Icon < 10
@@ -60,7 +62,6 @@ const FiveDaysWeather = ({ city }) => {
           </div>
         ))}
       </MDBRow>
-      <ScrollButton scrollStepInPx="50" delayInMs="16.66" />
     </div>
   ) : (
     <Fragment></Fragment>

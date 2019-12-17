@@ -1,21 +1,10 @@
 import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { getCityData } from "../../actions/city";
-
-import {
-  MDBBtn,
-  MDBCard,
-  MDBCardBody,
-  MDBCardImage,
-  MDBCardTitle,
-  MDBCardText,
-  MDBCol,
-  MDBRow,
-  MDBBox
-} from "mdbreact";
 import CurrentWeatherDetails from "./CurrentWeatherDetails";
 import FiveDaysWeather from "./FiveDaysWeather";
+import { MDBBox } from "mdbreact";
+import spinner from "../layout/spinner.gif";
 
 const MainWeatherContainer = ({ city }) => {
   return !city.name ? (
@@ -27,8 +16,20 @@ const MainWeatherContainer = ({ city }) => {
       alignItems="center"
       justifyContent="around"
     >
-      <CurrentWeatherDetails key={city.key} city={city} />
-      <FiveDaysWeather />
+      {city.isLoading ? (
+        <Fragment>
+          <img
+            src={spinner}
+            style={{ width: "200px", margin: "auto", display: "block" }}
+            alt="Loading..."
+          />
+        </Fragment>
+      ) : (
+        <Fragment>
+          <CurrentWeatherDetails key={city.key} city={city} />
+          <FiveDaysWeather />
+        </Fragment>
+      )}
     </MDBBox>
   );
 };

@@ -1,14 +1,13 @@
-import React, { Component, Fragment, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
 
-import { MDBInput, MDBCol, MDBListGroup, MDBListGroupItem } from "mdbreact";
+import { MDBInput, MDBListGroup, MDBListGroupItem } from "mdbreact";
 import "./SearchBar.css";
 import { connect } from "react-redux";
 import { getCityData } from "../../actions/city";
 
 const SearchBar = ({ getCityData, city }) => {
-  //from API
   const [formData, setFormData] = useState({
     dataSet: [],
     searchValue: ""
@@ -18,9 +17,6 @@ const SearchBar = ({ getCityData, city }) => {
 
   const handleSearch = event => {
     setFormData({ ...formData, searchValue: event.target.value });
-    console.log(formData);
-    console.log(event.target.value);
-    console.log(searchValue);
     searchForCity(event.target.value);
   };
 
@@ -41,40 +37,28 @@ const SearchBar = ({ getCityData, city }) => {
         })
       );
 
-      // const cities = [
-      //   {
-      //     name: "Tel Aviv",
-      //     country: "Israel",
-      //     key: "12345"
-      //   },
-      //   {
-      //     name: "Teliasi",
-      //     country: "Lithunia",
-      //     key: "6789"
-      //   }
-      // ];
       setFormData({
         dataSet: cities
       });
-      console.log(dataSet);
     } catch (err) {
       console.error(err);
     }
   };
 
   const onChooseCity = async value => {
-    console.log(value);
     setFormData({
       dataSet: [],
       searchValue: value.name
     });
     city.isLoading = true;
+    console.log(city.isLoading);
     getCityData(value.name, value.key, value.country);
   };
 
   return (
     <div className="search-bar">
       <MDBInput
+        pattern="[A-Za-z]"
         value={searchValue}
         onChange={handleSearch}
         hint="Enter city name"

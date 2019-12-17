@@ -1,29 +1,23 @@
 import React, { Fragment, useEffect } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-
 import PropTypes from "prop-types";
 import { getCityData } from "../../actions/city";
 import spinner from "./spinner.gif";
-
-import "./Favorites.css";
-
-import CurrentWeatherDetails from "../weatherDetails/CurrentWeatherDetails";
 import FavoriteCard from "./FavoriteCard";
 import { fetchFavoritesData } from "../../actions/favorites";
+import "./Favorites.css";
 
 const Favorites = ({ favorites, fetchFavoritesData, city }) => {
+  const { key, name, country, isLoading } = city;
   useEffect(() => {
-    favorites.map(city =>
-      fetchFavoritesData(city.name, city.key, city.country)
-    );
-  }, []);
+    favorites.map(city => fetchFavoritesData(name, key, country));
+  }, [favorites, fetchFavoritesData]);
 
   return (
     <div className="favorites-container">
       <h1 className="header">YOUR FAVORITES</h1>
       {favorites.length < 1 && <h2>No Favorites cities. </h2>}
-      {city.isLoading && favorites.length > 1 ? (
+      {isLoading && favorites.length > 1 ? (
         <Fragment>
           <img
             src={spinner}
@@ -34,7 +28,7 @@ const Favorites = ({ favorites, fetchFavoritesData, city }) => {
       ) : (
         <div className="favorites-cards-group">
           {favorites.map(city => (
-            <FavoriteCard key={city.key} fixedInfo={city} />
+            <FavoriteCard key={key} fixedInfo={city} />
           ))}
         </div>
       )}

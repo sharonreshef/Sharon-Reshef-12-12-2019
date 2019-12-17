@@ -12,13 +12,12 @@ const initialState = {
   currentWeatherData: null,
   fiveDaysWeather: null,
   isFavorite: false,
-  isCelsius: false,
+  isCelsius: true,
   isLoading: true
 };
 
 export default function(state = initialState, action) {
   const { type, payload } = action;
-  console.log(payload);
 
   switch (type) {
     case GET_CITY_DATA:

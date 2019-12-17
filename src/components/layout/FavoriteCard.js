@@ -4,16 +4,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { addToFavorites, removeFromFavorites } from "../../actions/favorites";
 import { getCityData } from "../../actions/city";
-import {
-  MDBBtn,
-  MDBCard,
-  MDBCardBody,
-  MDBCardImage,
-  MDBCardTitle,
-  MDBCardText,
-  MDBCol,
-  MDBRow
-} from "mdbreact";
+
 import "./FavoriteCard.scss";
 
 const FavoriteCard = ({
@@ -21,7 +12,8 @@ const FavoriteCard = ({
   fixedInfo,
   city,
   addToFavorites,
-  removeFromFavorites
+  removeFromFavorites,
+  getCityData
 }) => {
   const { isCelsius } = city;
   const { name, key, country, currentWeatherData } = fixedInfo;
@@ -35,14 +27,15 @@ const FavoriteCard = ({
     <Fragment>
       <div className="favorites-weather-card-container">
         <Link
-          to="/"
           onClick={e => {
-            getCityData(city.name, city.key, city.country);
+            getCityData(name, key, country);
           }}
+          to="/"
         >
           <div id="card" className="favorite-weather-card day">
             <div className="weather-elements">
               <img
+                alt="icon"
                 key={key}
                 className="today-icon"
                 src={
@@ -54,7 +47,6 @@ const FavoriteCard = ({
               <i
                 onClick={e => {
                   isFavorite ? removeFromFavorites(city) : addToFavorites(city);
-                  console.log("click");
                 }}
                 className={
                   isFavorite

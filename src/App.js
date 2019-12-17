@@ -8,6 +8,7 @@ import {
 import Navbar from "./components/layout/Navbar";
 import Landing from "./components/layout/Landing";
 import Favorites from "./components/layout/Favorites";
+import Alert from "./components/layout/Alert";
 import "./App.css";
 
 import { Provider } from "react-redux";
@@ -28,6 +29,8 @@ const App = () => {
           <Navbar />
           <MDBContainer>
             <Route exact path="/" component={Landing}></Route>
+            <Alert />
+
             <Switch>
               <Route exact path="/favorites" component={Favorites} />
               <Redirect from="*" to="/" />
