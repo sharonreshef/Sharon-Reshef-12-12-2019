@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { addToFavorites, removeFromFavorites } from "../../actions/favorites";
 import { getCityData } from "../../actions/city";
+import Moment from "react-moment";
+
 import {
   MDBBtn,
   MDBCard,
@@ -36,6 +38,11 @@ const CurrentWeatherDetails = ({
     isFavorite = true;
   }
 
+  var timestamp = Date.now(), // returns milliseconds since epoch time
+    normalisedTime = new Date(timestamp);
+
+  console.log(normalisedTime);
+
   return (
     <Fragment>
       <div className="weather-card-container">
@@ -67,7 +74,12 @@ const CurrentWeatherDetails = ({
               ? Math.floor(currentWeatherData.Temperature.Metric.Value)
               : Math.floor(currentWeatherData.Temperature.Imperial.Value)}
           </div>
-          <div className="text">{currentWeatherData.WeatherText}</div>
+          <div className="text">
+            {currentWeatherData.WeatherText}{" "}
+            <span className="date">
+              <Moment format="DD/MM/YYYY">{normalisedTime}</Moment>
+            </span>
+          </div>
         </div>
         <div id="city" className="city">
           {name}

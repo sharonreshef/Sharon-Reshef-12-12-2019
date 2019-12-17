@@ -5,12 +5,18 @@ import { connect } from "react-redux";
 import SearchBar from "./SearchBar";
 import MainWeatherContainer from "../weatherDetails/MainWeatherContainer";
 import { getCityData } from "../../actions/city";
+import spinner from "./spinner.gif";
 
 const Landing = ({ getCityData, city }) => {
   {
     return (
       <Fragment>
-        <MDBBox display="flex" flex="column" alignItems="center">
+        <MDBBox
+          display="flex"
+          flex="column"
+          alignItems="center"
+          className="container"
+        >
           <Fragment>
             <div className="text-center ">
               <p className="h5-responsive text-center font-weight-bold ">
@@ -24,7 +30,17 @@ const Landing = ({ getCityData, city }) => {
           <Fragment></Fragment>
           <SearchBar />
         </MDBBox>
-        <MainWeatherContainer />
+        {city.isLoading ? (
+          <Fragment>
+            <img
+              src={spinner}
+              style={{ width: "200px", margin: "auto", display: "block" }}
+              alt="Loading..."
+            />
+          </Fragment>
+        ) : (
+          <MainWeatherContainer />
+        )}
       </Fragment>
     );
   }

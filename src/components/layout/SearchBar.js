@@ -7,7 +7,7 @@ import "./SearchBar.css";
 import { connect } from "react-redux";
 import { getCityData } from "../../actions/city";
 
-const SearchBar = ({ getCityData, showHeader }) => {
+const SearchBar = ({ getCityData, city }) => {
   //from API
   const [formData, setFormData] = useState({
     dataSet: [],
@@ -68,6 +68,7 @@ const SearchBar = ({ getCityData, showHeader }) => {
       dataSet: [],
       searchValue: value.name
     });
+    city.isLoading = true;
     getCityData(value.name, value.key, value.country);
   };
 
@@ -96,4 +97,8 @@ SearchBar.propTypes = {
   getCityData: PropTypes.func.isRequired
 };
 
-export default connect(null, { getCityData })(SearchBar);
+const mapStateToProps = state => ({
+  city: state.city
+});
+
+export default connect(mapStateToProps, { getCityData })(SearchBar);

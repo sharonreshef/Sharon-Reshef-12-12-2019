@@ -12,7 +12,8 @@ const initialState = {
   currentWeatherData: null,
   fiveDaysWeather: null,
   isFavorite: false,
-  isCelsius: false
+  isCelsius: false,
+  isLoading: true
 };
 
 export default function(state = initialState, action) {
@@ -43,7 +44,8 @@ export default function(state = initialState, action) {
     case GET_FIVE_DAYS_WEATHER:
       return {
         ...state,
-        fiveDaysWeather: payload
+        fiveDaysWeather: payload,
+        isLoading: false
       };
     default:
       return state;
