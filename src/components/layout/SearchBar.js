@@ -14,7 +14,7 @@ const SearchBar = ({ getCityData, city }) => {
   });
 
   const { dataSet, searchValue } = formData;
-  const API_KEY = "GGm60KL1rni3aqv2uMlgyQ4VEyMl9JSA";
+  const apiKey = "Tkahw7D9GyntmjA2CKfI14zzUsTeVIbk";
 
   const handleSearch = event => {
     setFormData({ ...formData, searchValue: event.target.value });
@@ -24,7 +24,7 @@ const SearchBar = ({ getCityData, city }) => {
   const searchForCity = async value => {
     try {
       const res = await axios.get(
-        `http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${API_KEY}&q=${value}`
+        `http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${apiKey}&q=${value}`
       );
       setFormData({
         dataSet: []
