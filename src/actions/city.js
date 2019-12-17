@@ -7,6 +7,7 @@ export const getCityData = (name, key, country) => async dispatch => {
     const res = await axios.get(
       `currentconditions/v1/${key}?apikey=Tkahw7D9GyntmjA2CKfI14zzUsTeVIbk`
     );
+    console.log("try");
 
     const city = {
       currentWeatherData: res.data[0],
