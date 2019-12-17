@@ -19,7 +19,7 @@ import { getCityData } from "./actions/city";
 
 const App = () => {
   useEffect(() => {
-    store.dispatch(getCityData("Tel Aviv", 215854, "Israel"));
+    store.dispatch(getCityData("Tel Aviv", "215854", "Israel"));
   }, []);
 
   return (
