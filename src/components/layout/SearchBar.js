@@ -14,6 +14,7 @@ const SearchBar = ({ getCityData, city }) => {
   });
 
   const { dataSet, searchValue } = formData;
+  const API_KEY = "GGm60KL1rni3aqv2uMlgyQ4VEyMl9JSA";
 
   const handleSearch = event => {
     setFormData({ ...formData, searchValue: event.target.value });
@@ -23,7 +24,7 @@ const SearchBar = ({ getCityData, city }) => {
   const searchForCity = async value => {
     try {
       const res = await axios.get(
-        `locations/v1/cities/autocomplete?apikey=${process.env.REACT_APP_API_KEY}&q=${value}`
+        `locations/v1/cities/autocomplete?apikey=${API_KEY}&q=${value}`
       );
       setFormData({
         dataSet: []

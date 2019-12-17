@@ -2,10 +2,12 @@ import axios from "axios";
 import { GET_CITY_DATA, GET_FIVE_DAYS_WEATHER } from "./types";
 import { setAlert } from "./alert";
 
+const API_KEY = "GGm60KL1rni3aqv2uMlgyQ4VEyMl9JSA";
+
 export const getCityData = (name, key, country) => async dispatch => {
   try {
     const res = await axios.get(
-      `currentconditions/v1/${key}?apikey=${process.env.REACT_APP_API_KEY}`
+      `currentconditions/v1/${key}?apikey=${API_KEY}`
     );
 
     const city = {
@@ -28,7 +30,7 @@ export const getCityData = (name, key, country) => async dispatch => {
 export const getFiveDaysWeather = key => async dispatch => {
   try {
     const res = await axios.get(
-      `forecasts/v1/daily/5day/${key}?apikey=${process.env.REACT_APP_API_KEY}&metric=true`
+      `forecasts/v1/daily/5day/${key}?apikey=${API_KEY}&metric=true`
     );
 
     dispatch({

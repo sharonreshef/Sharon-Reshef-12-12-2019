@@ -6,6 +6,8 @@ import {
 } from "./types";
 import { setAlert } from "./alert";
 
+const API_KEY = "GGm60KL1rni3aqv2uMlgyQ4VEyMl9JSA";
+
 export const addToFavorites = city => dispatch => {
   try {
     // // if (localStorage.getItem("favorites") === null) {
@@ -51,7 +53,7 @@ export const removeFromFavorites = city => dispatch => {
 export const fetchFavoritesData = (name, key, country) => async dispatch => {
   try {
     const res = await axios.get(
-      `currentconditions/v1/${key}?apikey=${process.env.REACT_APP_API_KEY}`
+      `currentconditions/v1/${key}?apikey=${API_KEY}`
     );
 
     const city = {

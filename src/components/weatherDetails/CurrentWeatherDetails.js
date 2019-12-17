@@ -17,6 +17,7 @@ const CurrentWeatherDetails = ({
   const { name, key, country, currentWeatherData, isCelsius } = city;
 
   useEffect(() => {
+    console.log(currentWeatherData);
     const interval = setInterval(() => {
       getCityData(city.name, city.key, city.country);
     }, 1800000);
