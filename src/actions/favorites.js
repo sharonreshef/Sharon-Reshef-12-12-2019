@@ -51,7 +51,7 @@ export const removeFromFavorites = city => dispatch => {
 export const fetchFavoritesData = (name, key, country) => async dispatch => {
   try {
     const res = await axios.get(
-      `currentconditions/v1/${key}?apikey=${process.env.REACT_APP_API_KEY}`
+      `http://dataservice.accuweather.com/currentconditions/v1/${key}?apikey=${process.env.REACT_APP_API_KEY}`
     );
 
     const city = {

@@ -24,7 +24,7 @@ const SearchBar = ({ getCityData, city }) => {
   const searchForCity = async value => {
     try {
       const res = await axios.get(
-        `locations/v1/cities/autocomplete?apikey=${API_KEY}&q=${value}`
+        `http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${API_KEY}&q=${value}`
       );
       setFormData({
         dataSet: []
