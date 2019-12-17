@@ -72,7 +72,7 @@ const SearchBar = ({ getCityData, showHeader }) => {
   };
 
   return (
-    <Fragment>
+    <div className="search-bar">
       <MDBInput
         value={searchValue}
         onChange={handleSearch}
@@ -88,7 +88,7 @@ const SearchBar = ({ getCityData, showHeader }) => {
           </MDBListGroupItem>
         ))}
       </MDBListGroup>
-    </Fragment>
+    </div>
   );
 };
 

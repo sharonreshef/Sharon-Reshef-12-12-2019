@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -14,22 +14,28 @@ import { Provider } from "react-redux";
 import store from "./store";
 
 import { MDBContainer } from "mdbreact";
+import { getCityData } from "./actions/city";
 
-const App = () => (
-  <Provider store={store}>
-    <Router>
-      <Fragment>
-        <Navbar />
-        <MDBContainer>
-          <Route exact path="/" component={Landing}></Route>
-          <Switch>
-            <Route exact path="/favorites" component={Favorites} />
-            <Redirect from="*" to="/" />
-          </Switch>
-        </MDBContainer>
-      </Fragment>
-    </Router>
-  </Provider>
-);
+const App = () => {
+  useEffect(() => {
+    store.dispatch(getCityData("Tel Aviv", 215854, "Israel"));
+  }, []);
 
+  return (
+    <Provider store={store}>
+      <Router>
+        <Fragment>
+          <Navbar />
+          <MDBContainer>
+            <Route exact path="/" component={Landing}></Route>
+            <Switch>
+              <Route exact path="/favorites" component={Favorites} />
+              <Redirect from="*" to="/" />
+            </Switch>
+          </MDBContainer>
+        </Fragment>
+      </Router>
+    </Provider>
+  );
+};
 export default App;

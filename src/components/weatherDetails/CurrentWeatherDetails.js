@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { addToFavorites, removeFromFavorites } from "../../actions/favorites";
@@ -19,9 +19,17 @@ const CurrentWeatherDetails = ({
   favorites,
   city,
   addToFavorites,
-  removeFromFavorites
+  removeFromFavorites,
+  getCityData
 }) => {
   const { name, key, country, currentWeatherData, isCelsius } = city;
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      getCityData(city.name, city.key, city.country);
+    }, 1800000);
+    return () => clearInterval(interval);
+  }, []);
 
   let isFavorite;
   if (favorites.find(city => city.key === key)) {

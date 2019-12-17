@@ -1,3 +1,7 @@
 .list-group-item {
   cursor: pointer;
 }
+
+.search-bar {
+  margin-bottom: 10px;
+}

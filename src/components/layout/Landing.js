@@ -1,29 +1,27 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import { MDBBox } from "mdbreact";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import SearchBar from "./SearchBar";
 import MainWeatherContainer from "../weatherDetails/MainWeatherContainer";
+import { getCityData } from "../../actions/city";
 
-const Landing = ({ city }) => {
+const Landing = ({ getCityData, city }) => {
   {
     return (
       <Fragment>
         <MDBBox display="flex" flex="column" alignItems="center">
-          {!city.name ? (
-            <Fragment>
-              <div className="text-center my-4">
-                <p className="h1-responsive text-center font-weight-bold ">
-                  Enter a city name to find out the current weather
-                </p>
-              </div>
-              <p className="grey-text text-center w-responsive mx-auto">
-                Add cities to your favorites for quick access
+          <Fragment>
+            <div className="text-center ">
+              <p className="h5-responsive text-center font-weight-bold ">
+                Enter a city name to find out the current weather
               </p>
-            </Fragment>
-          ) : (
-            <Fragment></Fragment>
-          )}
+            </div>
+            <p className="grey-text text-center w-responsive mx-auto">
+              Add cities to your favorites for quick access
+            </p>
+          </Fragment>
+          <Fragment></Fragment>
           <SearchBar />
         </MDBBox>
         <MainWeatherContainer />
@@ -33,11 +31,11 @@ const Landing = ({ city }) => {
 };
 
 Landing.propTypes = {
-  city: PropTypes.object.isRequired
+  getCityData: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
   city: state.city
 });
 
-export default connect(mapStateToProps, {})(Landing);
+export default connect(mapStateToProps, { getCityData })(Landing);
