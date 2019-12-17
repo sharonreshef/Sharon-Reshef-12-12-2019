@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
@@ -9,8 +9,15 @@ import "./Favorites.css";
 
 import CurrentWeatherDetails from "../weatherDetails/CurrentWeatherDetails";
 import FavoriteCard from "./FavoriteCard";
+import { fetchFavoritesData } from "../../actions/favorites";
 
-const Favorites = ({ favorites, getCityData }) => {
+const Favorites = ({ favorites, fetchFavoritesData }) => {
+  useEffect(() => {
+    favorites.map(city =>
+      fetchFavoritesData(city.name, city.key, city.country)
+    );
+  }, []);
+
   return (
     <div className="favorites-container">
       <h1 className="header">YOUR FAVORITES</h1>
@@ -33,4 +40,6 @@ const mapStateToProps = state => ({
   favorites: state.favorites
 });
 
-export default connect(mapStateToProps, { getCityData })(Favorites);
+export default connect(mapStateToProps, { getCityData, fetchFavoritesData })(
+  Favorites
+);
