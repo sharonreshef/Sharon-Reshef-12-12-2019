@@ -5,7 +5,7 @@ import { setAlert } from "./alert";
 export const getCityData = (name, key, country) => async dispatch => {
   try {
     const res = await axios.get(
-      `currentconditions/v1/${key}?apikey=${Tkahw7D9GyntmjA2CKfI14zzUsTeVIbk}`
+      `currentconditions/v1/${key}?apikey=Tkahw7D9GyntmjA2CKfI14zzUsTeVIbk`
     );
 
     const city = {
