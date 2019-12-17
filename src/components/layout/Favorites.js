@@ -17,15 +17,7 @@ const Favorites = ({ favorites, getCityData }) => {
       {favorites.length < 1 && <h2>No Favorites cities. </h2>}
       <div className="favorites-cards-group">
         {favorites.map(city => (
-          <Link
-            to="/"
-            className="weather-card-container"
-            onClick={e => {
-              getCityData(city.name, city.key, city.country);
-            }}
-          >
-            <FavoriteCard key={city.key} fixedInfo={city} />
-          </Link>
+          <FavoriteCard key={city.key} fixedInfo={city} />
         ))}
       </div>
     </div>

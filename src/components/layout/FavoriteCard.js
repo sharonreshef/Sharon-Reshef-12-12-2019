@@ -32,8 +32,8 @@ const FavoriteCard = ({
 
   return (
     <Fragment>
-      <div className="weather-card-container">
-        <div id="card" className="weather-card day">
+      <div className="favorites-weather-card-container">
+        <div id="card" className="favorite-weather-card day">
           <div className="weather-elements">
             <img
               key={key}
