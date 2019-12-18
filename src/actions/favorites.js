@@ -11,20 +11,6 @@ const baseUrl = "//dataservice.accuweather.com";
 
 export const addToFavorites = city => dispatch => {
   try {
-    // // if (localStorage.getItem("favorites") === null) {
-    // //   localStorage.setItem("favorites", city.key);
-    // // }
-    // if (localStorage.getItem("favorites") === null) {
-    //   var favorites = [city.key];
-    //   // favorites.push(JSON.parse(localStorage.getItem("favorites")));
-    //   localStorage.setItem("favorites", JSON.stringify(favorites));
-    // } else {
-    //   let favorites = JSON.parse(localStorage.getItem("favorites"));
-    //   console.log(favorites);
-    //   favorites.push(parseInt(city.key));
-    //   console.log(favorites);
-    //   localStorage.setItem("favorites", JSON.stringify(favorites));
-    // }
     dispatch({
       type: ADD_TO_FAVORITES,
       payload: city
@@ -36,11 +22,6 @@ export const addToFavorites = city => dispatch => {
 
 export const removeFromFavorites = city => dispatch => {
   try {
-    // let favorites = JSON.parse(localStorage.getItem("favorites"));
-    // console.log(favorites);
-    // let newfavorites = favorites.filter(key => key !== city.key);
-    // console.log(newfavorites);
-    // localStorage.setItem("favorites", JSON.stringify(newfavorites));
     dispatch({
       type: REMOVE_FROM_FAVORITES,
       payload: city

@@ -22,8 +22,6 @@ export const getLocationData = () => async dispatch => {
       const res = await axios.get(
         `${baseUrl}/locations/v1/cities/geoposition/search?apikey=${apiKey}&q=${crd.latitude}%2C${crd.longitude}&toplevel=true"`
       );
-      console.log(res);
-      console.log(res.data);
       dispatch(
         getCityData(
           res.data.LocalizedName,
@@ -49,7 +47,6 @@ export const getCityData = (name, key, country) => async dispatch => {
     const res = await axios.get(
       `${baseUrl}/currentconditions/v1/${key}?apikey=${apiKey}`
     );
-    console.log("res", res);
 
     const city = {
       currentWeatherData: res.data[0],

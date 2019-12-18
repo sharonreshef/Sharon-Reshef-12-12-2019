@@ -53,7 +53,6 @@ const SearchBar = ({ getCityData, city }) => {
       searchValue: value.name
     });
     city.isLoading = true;
-    console.log(city.isLoading);
     getCityData(value.name, value.key, value.country);
   };
 
