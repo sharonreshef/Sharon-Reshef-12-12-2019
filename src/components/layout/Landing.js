@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import SearchBar from "./SearchBar";
 import MainWeatherContainer from "../weatherDetails/MainWeatherContainer";
 import spinner from "./spinner.gif";
+import ToggleButton from "./ToggleButton";
 
 const Landing = ({ city, alert }) => {
   return (
@@ -26,6 +27,10 @@ const Landing = ({ city, alert }) => {
         </Fragment>
         <SearchBar />
       </MDBBox>
+      <div className="toggle-button">
+        {" "}
+        <ToggleButton />
+      </div>
       {city.isLoading && !alert ? (
         <Fragment>
           <img

@@ -8,10 +8,12 @@ import { fetchFavoritesData } from "../../actions/favorites";
 import "./Favorites.css";
 
 const Favorites = ({ favorites, fetchFavoritesData, city }) => {
-  const { key, name, country, isLoading } = city;
+  const { isLoading } = city;
   useEffect(() => {
-    favorites.map(city => fetchFavoritesData(name, key, country));
-  }, [favorites, fetchFavoritesData]);
+    favorites.map(city =>
+      fetchFavoritesData(city.name, city.key, city.country)
+    );
+  }, []);
 
   return (
     <div className="favorites-container">
@@ -28,7 +30,7 @@ const Favorites = ({ favorites, fetchFavoritesData, city }) => {
       ) : (
         <div className="favorites-cards-group">
           {favorites.map(city => (
-            <FavoriteCard key={key} fixedInfo={city} />
+            <FavoriteCard key={city.key} fixedInfo={city} />
           ))}
         </div>
       )}

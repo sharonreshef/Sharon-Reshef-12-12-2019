@@ -23,7 +23,7 @@ const Navbar = () => {
       <MDBNavbarBrand>
         <MDBNavLink to="/" onClick={onClick}>
           {" "}
-          <img alt="icon" className="icon" src={"./weather_icon.png"} />
+          <img alt="icon" className="icon hide-sm" src={"./weather_icon.png"} />
           {"  "}
           <strong className="white-text h3">Herolo Weather App</strong>
         </MDBNavLink>

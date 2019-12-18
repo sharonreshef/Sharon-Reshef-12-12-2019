@@ -2,7 +2,8 @@ import {
   GET_CITY_DATA,
   ADD_TO_FAVORITES,
   REMOVE_FROM_FAVORITES,
-  GET_FIVE_DAYS_WEATHER
+  GET_FIVE_DAYS_WEATHER,
+  TOGGLE_DEGREES_FORMAT
 } from "../actions/types";
 
 const initialState = {
@@ -45,6 +46,11 @@ export default function(state = initialState, action) {
         ...state,
         fiveDaysWeather: payload,
         isLoading: false
+      };
+    case TOGGLE_DEGREES_FORMAT:
+      return {
+        ...state,
+        isCelsius: !payload
       };
     default:
       return state;

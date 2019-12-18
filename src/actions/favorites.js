@@ -6,7 +6,8 @@ import {
 } from "./types";
 import { setAlert } from "./alert";
 
-const apiKey = "Tkahw7D9GyntmjA2CKfI14zzUsTeVIbk";
+const apiKey = "ox5MncPoAGSDdNll9XJt1Somn3pQLZcr";
+const baseUrl = "//dataservice.accuweather.com";
 
 export const addToFavorites = city => dispatch => {
   try {
@@ -53,7 +54,7 @@ export const removeFromFavorites = city => dispatch => {
 export const fetchFavoritesData = (name, key, country) => async dispatch => {
   try {
     const res = await axios.get(
-      `http://dataservice.accuweather.com/currentconditions/v1/${key}?apikey=${apiKey}`
+      `${baseUrl}/currentconditions/v1/${key}?apikey=${apiKey}`
     );
 
     const city = {
