@@ -15,11 +15,12 @@ import { Provider } from "react-redux";
 import store from "./store";
 
 import { MDBContainer } from "mdbreact";
-import { getCityData } from "./actions/city";
+import { getCityData, getLocationData } from "./actions/city";
 
 const App = () => {
   useEffect(() => {
-    store.dispatch(getCityData("Tel Aviv", "215854", "Israel"));
+    store.dispatch(getLocationData());
+    // store.dispatch(getCityData("Tel Aviv", "215854", "Israel"));
   }, []);
 
   return (
