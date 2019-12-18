@@ -14,7 +14,7 @@ const SearchBar = ({ getCityData, city }) => {
   });
 
   const { dataSet, searchValue } = formData;
-  const apiKey = "ox5MncPoAGSDdNll9XJt1Somn3pQLZcr";
+  const apiKey = "58jiHIZg4nYOHReRyhDYtotr0MzpQJzy";
   const baseUrl = "//dataservice.accuweather.com";
 
   const handleSearch = event => {

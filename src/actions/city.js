@@ -6,7 +6,7 @@ import {
 } from "./types";
 import { setAlert } from "./alert";
 
-const apiKey = "ox5MncPoAGSDdNll9XJt1Somn3pQLZcr";
+const apiKey = "58jiHIZg4nYOHReRyhDYtotr0MzpQJzy";
 const baseUrl = "//dataservice.accuweather.com";
 
 export const getLocationData = () => async dispatch => {
