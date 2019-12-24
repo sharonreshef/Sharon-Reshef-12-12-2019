@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getCityData } from "../../actions/city";
 import spinner from "./spinner.gif";
-import FavoriteCard from "./FavoriteCard";
+import FavoriteCard from "../favorites/FavoriteCard";
 import { fetchFavoritesData } from "../../actions/favorites";
 import "./Favorites.css";
 
