@@ -20,10 +20,10 @@ const Landing = ({ city, alert }) => {
             <p className="h5-responsive text-center font-weight-bold ">
               Enter a city name to find out the current weather
             </p>
+            <p className="grey-text text-center w-responsive mx-auto hide-sm">
+              Add cities to your favorites for quick access
+            </p>
           </div>
-          <p className="grey-text text-center w-responsive mx-auto hide-sm">
-            Add cities to your favorites for quick access
-          </p>
         </Fragment>
         <SearchBar />
       </MDBBox>
