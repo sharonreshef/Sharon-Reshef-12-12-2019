@@ -7,13 +7,10 @@ import "./SearchBar.css";
 import { connect } from "react-redux";
 import { getCityData } from "../../actions/city";
 
-import { AutoComplete } from "primereact/autocomplete";
-
 const SearchBar = ({ getCityData, city }) => {
   const [formData, setFormData] = useState({
     dataSet: [],
-    searchValue: "",
-    brandSuggestions: null
+    searchValue: ""
   });
 
   const { dataSet, searchValue } = formData;
@@ -61,7 +58,7 @@ const SearchBar = ({ getCityData, city }) => {
 
   return (
     <div className="search-bar">
-      {/* <MDBInput
+      <MDBInput
         pattern="[A-Za-z]"
         value={searchValue}
         onChange={handleSearch}
@@ -76,13 +73,7 @@ const SearchBar = ({ getCityData, city }) => {
             {city.name}
           </MDBListGroupItem>
         ))}
-      </MDBListGroup> */}
-      <AutoComplete
-        value={searchValue}
-        onChange={e => handleSearch}
-        suggestions={dataSet.map(city.name)}
-        completeMethod={onChooseCity}
-      />
+      </MDBListGroup>
     </div>
   );
 };

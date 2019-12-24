@@ -4,4 +4,6 @@
 
 .search-bar {
   margin-bottom: 10px;
+  position: absolute;
+  z-index: 99;
 }
